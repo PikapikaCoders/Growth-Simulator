@@ -86,7 +86,7 @@ addLayer("p", {
         31: {
             title: "Point Factory",
             description: "Generate 5% of Plant you'd gain when reset every second",
-            cost: new Decimal(200),
+            cost: new Decimal(100),
             unlocked() {return hasUpgrade('p', 13), hasUpgrade('p', 23)}
         },
     },
