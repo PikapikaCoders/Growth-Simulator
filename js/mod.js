@@ -2,9 +2,10 @@ let modInfo = {
 	name: "Growth Simulator",
 	id: "mymod",
 	author: "nobody",
-	pointsName: "points",
+	pointsName: "growth",
 	modFiles: ["_growth.js", "tree.js",
-		"1_prestige.js"
+		"1_plants.js",
+		"2_fertilizer.js", "2_machines.js"
 	],
 	discordName: "",
 	discordLink: "",
@@ -50,6 +51,7 @@ function getPointGen() {
 	} else {
 		gain = player.p.incChance.ceil().sub(1)
 	}
+	if (hasUpgrade('m', 11) && Math.random() >= 0.9) gain = gain.times(10)
 	return gain
 }
 
