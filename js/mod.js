@@ -1,13 +1,14 @@
 let modInfo = {
-	name: "The ??? Tree",
+	name: "Growth Simulator",
 	id: "mymod",
 	author: "nobody",
 	pointsName: "points",
-	modFiles: ["layers.js", "tree.js"],
-
+	modFiles: ["_growth.js", "tree.js",
+		"1_prestige.js"
+	],
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
@@ -39,10 +40,16 @@ function canGenPoints(){
 
 // Calculate points/sec!
 function getPointGen() {
+	  
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
+	let gain = new Decimal(0)
+	if (new Decimal(Math.floor(Math.random()*10000)).lte(player.p.incChance.sub(player.p.incChance.floor()).times(10000))){
+		gain = player.p.incChance.ceil()
+	} else {
+		gain = player.p.incChance.ceil().sub(1)
+	}
 	return gain
 }
 
