@@ -37,9 +37,9 @@ addLayer("p", {
         if (hasUpgrade('p', 12)) chance = chance.times(1.5)
         if (hasUpgrade('p', 13)) chance = chance.times(1.5)
         player.g.baseMult = chance
-        if (hasUpgrade('p', 21)) chance = chance.times(player.points.pow(0.1))
-        if (hasUpgrade('p', 22)) chance = chance.times(player.p.points.pow(0.2))
-        if (hasUpgrade('p', 23)) chance = chance.times(player.p.points.pow(0.1))
+        if (hasUpgrade('p', 21) && player.points.pow(0.1).gt(0)) chance = chance.times(player.points.pow(0.1))
+        if (hasUpgrade('p', 22) && player.p.points.pow(0.2).gt(0)) chance = chance.times(player.p.points.pow(0.2))
+        if (hasUpgrade('p', 23) && player.p.prestige.pow(0.1).gt(0)) chance = chance.times(player.p.prestige.pow(0.1))
         player.p.incChance = chance
     },
 
