@@ -17,7 +17,7 @@ addLayer("p", {
     exponent: 0.8, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        if (player.f.points.gt(0)) mult = player.f.points.times(5).pow(0.4)
+        if (player.f.points.gt(0)) mult = player.f.points.times(5).pow(0.4).times(new Decimal(1.35).pow(getBuyableAmount('f', 11)))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -29,6 +29,7 @@ addLayer("p", {
     ],
     layerShown(){return true},
     passiveGeneration() { return (hasUpgrade('p', 31))?0.05:0 },
+    autoUpgrade() {return hasUpgrade('m', 21)},
 
     update() {
         //Increase Chance Calculator
@@ -74,19 +75,19 @@ addLayer("p", {
         22: {
             title: "Manipulate II",
             description: "Growth Rate increased by Plants",
-            cost: new Decimal(30),
+            cost: new Decimal(20),
             unlocked() {return hasUpgrade('p', 21)}
         },
         23: {
             title: "Manipulate II",
             description: "Growth Rate increased by Plant Reset",
-            cost: new Decimal(50),
+            cost: new Decimal(30),
             unlocked() {return hasUpgrade('p', 22)}
         },
         31: {
             title: "Point Factory",
             description: "Generate 5% of Plant you'd gain when reset every second",
-            cost: new Decimal(100),
+            cost: new Decimal(50),
             unlocked() {return hasUpgrade('p', 13), hasUpgrade('p', 23)}
         },
     },

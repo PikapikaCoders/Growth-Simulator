@@ -4,7 +4,7 @@ let modInfo = {
 	author: "nobody",
 	pointsName: "growth",
 	modFiles: ["_growth.js", "tree.js",
-		"1_plants.js",
+		"1_plants.js", "1_resources.js",
 		"2_fertilizer.js", "2_machines.js"
 	],
 	discordName: "",
@@ -47,11 +47,15 @@ function getPointGen() {
 
 	let gain = new Decimal(0)
 	if (new Decimal(Math.floor(Math.random()*10000)).lte(player.p.incChance.sub(player.p.incChance.floor()).times(10000))){
-		gain = player.p.incChance.ceil()
+		let critMult = new Decimal(1)
+		if (hasUpgrade('m', 12)) critMult = critMult.times(4)
+
+		gain = player.p.incChance.ceil().add(critMult)
 	} else {
 		gain = player.p.incChance.ceil().sub(1)
 	}
 	if (hasUpgrade('m', 11) && Math.random() >= 0.9) gain = gain.times(10)
+	if (player.r.points.gte(1) && player.r.unlocked) gain = gain.times(player.r.points.pow(0.2))
 	return gain
 }
 
