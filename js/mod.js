@@ -51,7 +51,7 @@ function getPointGen() {
 		let critMult = new Decimal(1)
 		if (hasUpgrade('m', 12)) critMult = critMult.times(4)
 
-		gain = player.p.incChance.ceil().add(critMult)
+		gain = player.p.incChance.ceil().add(critMult).sub(1)
 	} else {
 		gain = player.p.incChance.ceil().sub(1)
 	}
