@@ -3,9 +3,10 @@ let modInfo = {
 	id: "mymod",
 	author: "nobody",
 	pointsName: "growth",
-	modFiles: ["_growth.js", "tree.js",
-		"1_plants.js", "1_resources.js",
-		"2_fertilizer.js", "2_machines.js"
+	modFiles: ["_Growth.js", "_AutoReset.js", "tree.js",
+		"1_Plants.js",
+		"2_Fertilizer.js", "2_Machines.js", "2_Resources.js",
+		"3_Acceleration.js", "3_REsearch.js"
 	],
 	discordName: "",
 	discordLink: "",
@@ -56,6 +57,7 @@ function getPointGen() {
 	}
 	if (hasUpgrade('m', 11) && Math.random() >= 0.9) gain = gain.times(10)
 	if (player.r.points.gte(1) && player.r.unlocked) gain = gain.times(player.r.points.pow(0.2))
+		if (player.re.points.gte(1)) gain = gain.times(Decimal.pow(1.5, player.re.points))
 	return gain
 }
 

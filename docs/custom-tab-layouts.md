@@ -7,7 +7,7 @@ Custom tab layouts can be used to do basically anything in a tab window, especia
 ```js
 tabFormat: [
     "main-display",
-    ["prestige-button"],
+    "prestige-button",
     "blank",
     ["display-text",
         function() { return 'I have ' + format(player.points) + ' pointy points!' },
